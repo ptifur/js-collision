@@ -1,0 +1,15 @@
+* {
+    margin: 0;
+}
+
+.wrapper {
+    background: #111111;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+canvas {
+    background: #191a1a;
+}
