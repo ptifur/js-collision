@@ -1,9 +1,10 @@
 * {
     margin: 0;
+    font-size: 16px;
 }
 
 .wrapper {
-    background: #111111;
+    background: #ffffff;
     height: 100vh;
     display: flex;
     align-items: center;
@@ -11,5 +12,40 @@
 }
 
 canvas {
-    background: #191a1a;
+    background: #eeeeee;
+    border-radius: 8px;
+}
+
+.ui {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button {
+    border: none;
+    padding: 10px 30px;
+    border-radius: 26px;
+    background: #dddddd;
+    margin-left: 10px;
+    color: #ffffff;
+}
+
+button:hover {
+    background: #cccccc;
+}
+
+.active {
+    background: #ee5c5c;
+    color: #ffffff;
+}
+
+.active:hover {
+    background: #f57272;
+}
+
+label {
+    padding-left: 50px;
+    padding-right: 6px;
 }
