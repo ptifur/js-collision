@@ -9,6 +9,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #ffffff;
+    width: 850px;
+    min-height: 80px;
+    margin: 25px auto;
 }
 
 canvas {
@@ -54,8 +65,8 @@ label {
 #caption {
     position: absolute;
     top: 39vh;
-    left: 36%;
-    font-size: 7em;
+    left: 37%;
+    font-size: 8em;
     color: #ffffff;
     display: none;
 }

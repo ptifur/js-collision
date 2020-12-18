@@ -8,7 +8,8 @@ const buttonRandom = document.getElementById('random')
 const buttonParticles = document.getElementById('particles')
 const checkboxLeaveTrace = document.getElementById('checkbox')
 
-let movementType = 'particles'
+let movementType = 'random'
+// let movementType = 'particles'
 
 const caption = document.getElementById('caption')
 
@@ -25,7 +26,7 @@ buttonParticles.addEventListener('click', () => {
 
     init()
 
-    caption.style.display = 'none'
+    // caption.style.display = 'none'
     displayCaption = false
 
     movementType = 'particles'
@@ -45,9 +46,10 @@ function Box(x, y, w, h, colour) {
     this.w = w
     this.h = h
     this.colour = colour
+    this.opacity = .8
     this.velocity = {
-        x: (Math.random() - .5) * 10,
-        y: (Math.random() - .5) * 10,
+        x: 1,
+        y: 1
     }
 
     this.update = () => {
@@ -58,19 +60,42 @@ function Box(x, y, w, h, colour) {
         this.y += this.velocity.y
         
         // change direction
-        this.velocity.x = (Math.random() - .5) * 50
-        this.velocity.y = (Math.random() - .5) * 50
+        this.velocity.x = (Math.random() - .5) * 32
+        this.velocity.y = (Math.random() - .5) * 32
+
+        if (this.x < 10) {
+            console.log('left')
+            this.x = this.x + 10
+            this.colour = '#ee5c5c'
+        }
+        
+        if (this.x > canvas.width - 10) {
+            console.log('right')
+            this.x = this.x - 10
+            this.colour = '#ee5c5c'
+        }
+
+        if (this.y < 10) {
+            console.log('top')
+            this.y = this.y + 10
+            this.colour = '#ee5c5c'
+        }
+
+        if (this.y > canvas.height - 10) {
+            console.log('bottom')
+            this.y = this.y - 10
+        }
 
     }
 
     this.draw = () => {
-        context.globalAlpha = 1
+        context.globalAlpha = this.opacity
         context.fillStyle = colour
         context.fillRect(this.x, this.y, this.w, this.h)
     }
 }
 
-let boxOne = new Box(canvas.width / 2, canvas.height / 2, 16, 16, '#333333')
+let boxOne = new Box(canvas.width / 2, canvas.height / 2, 16, 16, '#333333  ')
 
 // define particles
 function Particle(x, y, r, colour) {
@@ -103,13 +128,21 @@ function Particle(x, y, r, colour) {
                 // this.r = this.r + .2
                 // this.colour = '#5cee5c'
             }
-            if (distance(this.x, this.y, particles[i].x, particles[i].y) - this.r * 2 - 20 < 0) {
-                this.r = this.r + .4
-                particles[i].colour = '#ee5c5c'
-                // this.colour = '#5cee5c'
+            if (distance(this.x, this.y, particles[i].x, particles[i].y) - this.r * 2 - 20 < 0 && this.r < 200) {
+
+                if (!displayCaption) {
+                    this.r = this.r + .4
+                    particles[i].colour = '#ee5c5c'
+                    this.colour = '#ee5c5c'
+                }
+
+                if (displayCaption && this.r > 6) {
+                    this.r = this.r - .4
+                }
+    
             }
 
-            if (this.r > 300) {
+            if (this.r > 200) {
                 displayCaption = true
             }
 
@@ -166,9 +199,9 @@ const animate = () => {
         context.clearRect(0, 0, canvas.width, canvas.height)
     }
 
-    if (displayCaption) {
-        caption.style.display = 'block'
-    }
+    // if (displayCaption) {
+    //     caption.style.display = 'block'
+    // }
 
     // B O X
     if (movementType === 'random') {
