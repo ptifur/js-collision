@@ -10,6 +10,10 @@ const checkboxLeaveTrace = document.getElementById('checkbox')
 
 let movementType = 'particles'
 
+const caption = document.getElementById('caption')
+
+let displayCaption = false
+
 buttonRandom.addEventListener('click', () => {
     movementType = 'random'
 
@@ -18,7 +22,11 @@ buttonRandom.addEventListener('click', () => {
 })
 
 buttonParticles.addEventListener('click', () => {
+
     init()
+
+    caption.style.display = 'none'
+    displayCaption = false
 
     movementType = 'particles'
 
@@ -77,26 +85,37 @@ function Particle(x, y, r, colour) {
     this.opacity = .9
     this.mass = 1
 
-    this.update = (type) => {
+    this.update = () => {
         this.draw()
+
+        this.colour = '#333333'
 
         // move
         this.x += this.velocity.x
         this.y += this.velocity.y
 
-        // bounce within the board
-        if (this.x < r || this.x > canvas.width - r) this.velocity.x *= -1
-        if (this.y < r || this.y > canvas.height - r) this.velocity.y *= -1
-
         // collision
         for (let i = 0; i < particles.length; i++) {
             // not compare with itself
             if (this === particles[i]) continue
-            if (distance(this.x, this.y, particles[i].x, particles[i].y) - this.r * 2 < 0) {
+            if (distance(this.x, this.y, particles[i].x, particles[i].y) - this.r * 2 - 10 < 0) {
                 resolveCollision(this, particles[i])
                 // this.r = this.r + .2
-                particles[i].colour = '#ee5c5c'
+                // this.colour = '#5cee5c'
             }
+            if (distance(this.x, this.y, particles[i].x, particles[i].y) - this.r * 2 - 20 < 0) {
+                this.r = this.r + .4
+                particles[i].colour = '#ee5c5c'
+                // this.colour = '#5cee5c'
+            }
+
+            if (this.r > 300) {
+                displayCaption = true
+            }
+
+            // bounce within the board
+            if (this.x < r || this.x > canvas.width - r) this.velocity.x *= -1
+            if (this.y < r || this.y > canvas.height - r) this.velocity.y *= -1
         }
     }
 
@@ -145,6 +164,10 @@ const animate = () => {
 
     if (!checkboxLeaveTrace.checked) {
         context.clearRect(0, 0, canvas.width, canvas.height)
+    }
+
+    if (displayCaption) {
+        caption.style.display = 'block'
     }
 
     // B O X

@@ -9,7 +9,3 @@ Folow the video
 ### How the helper function works?
 
 ### How to keep random walker within the board?
-
-3. Import helper function
-
-Cleanup the code
