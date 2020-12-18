@@ -5,11 +5,11 @@
 
 .wrapper {
     background: #ffffff;
-    height: 100vh;
-    display: flex;
+    min-height: 100vh;
+    /* display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
+    flex-direction: column; */
 }
 
 .header {
@@ -18,18 +18,28 @@
     justify-content: space-between;
     background: #ffffff;
     width: 850px;
-    min-height: 80px;
-    margin: 25px auto;
+    margin: 38px auto;
+}
+
+h1 {
+    font-size: 1.6em;
+}
+
+.canvasWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 canvas {
     background: #eeeeee;
     border-radius: 8px;
     position: relative;
+    margin: auto;
 }
 
 .ui {
-    margin-top: 15px;
+    margin: 35px 0;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -16,6 +16,8 @@ const caption = document.getElementById('caption')
 let displayCaption = false
 
 buttonRandom.addEventListener('click', () => {
+    context.clearRect(0, 0, canvas.width, canvas.height)
+
     movementType = 'random'
 
     buttonRandom.classList.toggle('active')
@@ -23,6 +25,7 @@ buttonRandom.addEventListener('click', () => {
 })
 
 buttonParticles.addEventListener('click', () => {
+    context.clearRect(0, 0, canvas.width, canvas.height)
 
     init()
 

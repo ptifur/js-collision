@@ -3,29 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Collision Practice</title>
+    <title>Motion exploration</title>
     <link rel="stylesheet" href="./style/style.css" />
     <script src="./script/main.js" type="module" defer></script>
 </head>
 <body>
     <div class="wrapper">
-        <!-- <div class="header">
+        <div class="header">
             <div class="title">
-                <h1>Motion</h1>
+                <h1>Motion exploration</h1>
             </div>
             <div class="nav">
-                <a href="#">Source code</a>
+                <a href="https://github.com/ptifur/js-collision" target="_blank">Source code</a>
             </div>
-        </div> -->
-        <div class="container">
+        </div>
+        <div class="canvasWrapper">
             <canvas id="canvas" width="850" height="550"></canvas>
-            <div id="caption">BOOM!</div>
-            <div class="ui">
-                <button id="random">Random walker</button>
-                <button id="particles" class="active">Particles</button>
-                <label for="checkbox">Leave the trace</label>
-                <input type="checkbox" id="checkbox" name="checkbox">
-            </div>
+            <!-- <div id="caption">BOOM!</div> -->
+        </div>
+        <div class="ui">
+            <button id="random" class="active">Random walker</button>
+            <button id="particles">Particles</button>
+            <label for="checkbox">Leave the trace</label>
+            <input type="checkbox" id="checkbox" name="checkbox">
         </div>
     </div>
 </body>
