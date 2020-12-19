@@ -9,7 +9,3 @@ Folow the video
 2. Collision of particles
 
 How the helper function works?
-
-### Checkbox style
-
-Here's [how](https://www.w3schools.com/howto/howto_css_custom_checkbox.asp)

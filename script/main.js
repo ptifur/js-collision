@@ -9,7 +9,6 @@ const buttonParticles = document.getElementById('particles')
 const checkboxLeaveTrace = document.getElementById('checkbox')
 
 let movementType = 'random'
-// let movementType = 'particles'
 
 const caption = document.getElementById('caption')
 
@@ -42,7 +41,7 @@ buttonParticles.addEventListener('click', () => {
 const canvas = document.getElementById('canvas')
 const context = canvas.getContext('2d')
 
-// define box
+// R A N D O M  W A L K E R 
 function Box(x, y, w, h, colour) {
     this.x = x
     this.y = y
@@ -66,26 +65,20 @@ function Box(x, y, w, h, colour) {
         this.velocity.x = (Math.random() - .5) * 32
         this.velocity.y = (Math.random() - .5) * 32
 
+        // keep within the board
         if (this.x < 10) {
-            console.log('left')
             this.x = this.x + 10
-            this.colour = '#ee5c5c'
         }
         
         if (this.x > canvas.width - 10) {
-            console.log('right')
             this.x = this.x - 10
-            this.colour = '#ee5c5c'
         }
 
         if (this.y < 10) {
-            console.log('top')
             this.y = this.y + 10
-            this.colour = '#ee5c5c'
         }
 
         if (this.y > canvas.height - 10) {
-            console.log('bottom')
             this.y = this.y - 10
         }
 
@@ -100,7 +93,7 @@ function Box(x, y, w, h, colour) {
 
 let boxOne = new Box(canvas.width / 2, canvas.height / 2, 16, 16, '#333333  ')
 
-// define particles
+// C O L L I S I O N
 function Particle(x, y, r, colour) {
     this.x = x
     this.y = y
@@ -126,25 +119,28 @@ function Particle(x, y, r, colour) {
         for (let i = 0; i < particles.length; i++) {
             // not compare with itself
             if (this === particles[i]) continue
-            if (distance(this.x, this.y, particles[i].x, particles[i].y) - this.r * 2 - 10 < 0) {
+            if (distance(this.x, this.y, particles[i].x, particles[i].y) - this.r * 2 - 8 < 0) {
                 resolveCollision(this, particles[i])
                 // this.r = this.r + .2
                 // this.colour = '#5cee5c'
             }
-            if (distance(this.x, this.y, particles[i].x, particles[i].y) - this.r * 2 - 20 < 0 && this.r < 200) {
+            if (distance(this.x, this.y, particles[i].x, particles[i].y) - this.r * 2 - 10 < 0 && this.r < 200) {
 
+                // grow
                 if (!displayCaption) {
                     this.r = this.r + .4
                     particles[i].colour = '#ee5c5c'
                     this.colour = '#ee5c5c'
                 }
 
+                // shrink
                 if (displayCaption && this.r > 6) {
                     this.r = this.r - .4
                 }
     
             }
 
+            // flip from grow to shrink
             if (this.r > 200) {
                 displayCaption = true
             }
@@ -192,7 +188,6 @@ function init() {
 
         particles.push(new Particle(x, y, r, colour))
     }
-    // console.log(particles)
 }
 
 const animate = () => {
@@ -211,7 +206,7 @@ const animate = () => {
         boxOne.update()
     }
 
-    // P A R T I C L E S
+    // C I R C L E S
     if (movementType === 'particles') {
         particles.forEach(particle => {
             particle.update(particles)
