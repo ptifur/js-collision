@@ -4,8 +4,8 @@
 
 1. Random walker
 
-Folow the video
-
 2. Collision of particles
 
-How the helper function works?
+## Next
+
+Update the header styles
